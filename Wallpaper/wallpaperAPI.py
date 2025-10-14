@@ -15,20 +15,21 @@ baseurl = 'https://wallhaven.cc/api/v1/'
 endpoint = '/5g22q5'
 apikey = '?apikey=' + key
 save_as = endpoint +'.jpg'
-wallpaper_path = input("Enter where to save wallpapers: ")
 
 # Check that the path provided is formated for the folder given
-if wallpaper_path[-1] != '\\':
-    wallpaper_path = wallpaper_path + '\\'
-    print(wallpaper_path)
-    image = wallpaper_path + save_as
-else:
-    image = wallpaper_path + '\\' + save_as
+
 
 # Gets wallpaper given by user
 def wallpaper_get():
-    baseurl = baseurl + 'w'
-    url = baseurl+endpoint+apikey
+    wallpaper_path = input("Enter where to save wallpapers: ")
+    if wallpaper_path[-1] != '\\':
+        wallpaper_path = wallpaper_path + '\\'
+        print(wallpaper_path)
+        image = wallpaper_path + save_as
+    else:
+        image = wallpaper_path + '\\' + save_as
+    searchurl = baseurl + 'w'
+    url = searchurl + endpoint + apikey
     wallpaper_request = requests.get(url)
     if wallpaper_request.status_code == 200:
         print('Success! Saving file...')
@@ -56,8 +57,9 @@ def change_wallpaper(image):
         print(f'Failed to change wallpaper: {e}')
         return False
 
+# Search wallhaven for an image
 def wallpaper_search():
-    url = baseurl+ 'search' + apikey
+    url = baseurl + 'search' + apikey
     wallpaper_request = requests.get(url)
     if wallpaper_request.status_code == 200:
         print('Success! Saving file...')
@@ -67,7 +69,7 @@ def wallpaper_search():
     else:
         print("failed with " + wallpaper_request.status_code)
 
-# imgurl = wallpaper_get()
-imgurl = wallpaper_search()
-download_image(imgurl, save_as)
-change_wallpaper(image)
+#imgurl = wallpaper_get()
+#imgurl = wallpaper_search()
+#download_image(imgurl, save_as)
+#change_wallpaper(image)
