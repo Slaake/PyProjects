@@ -19,22 +19,23 @@ forecastdata = response_forecast.json()
 
 forecast = forecastdata['properties']['periods'][day]
 
-print(f'Location: {city},{state}')
-print()
-while day < 12:
-    weekday = forecastdata['properties']['periods'][day]['name']
-    shortforecast = forecastdata['properties']['periods'][day]['shortForecast']
-    temp = forecast = forecastdata['properties']['periods'][day]['temperature']
-    rainpercent = forecastdata['properties']['periods'][day]['probabilityOfPrecipitation']['value']
-    wind = forecastdata['properties']['periods'][day]['windSpeed']
-    print(f'Forecast for {weekday}')
-    print(f'    {shortforecast}')
-    print(f'    Temperature: {temp}F degrees')
-    print(f'    Chance of rain is {rainpercent}%')
-    print(f'    Wind speed is {wind} mph')
+def get_weather():
+    print(f'Location: {city},{state}')
     print()
-    day += 2
-
+    day = 0
+    while day < 12:
+        weekday = forecastdata['properties']['periods'][day]['name']
+        shortforecast = forecastdata['properties']['periods'][day]['shortForecast']
+        temp = forecast = forecastdata['properties']['periods'][day]['temperature']
+        rainpercent = forecastdata['properties']['periods'][day]['probabilityOfPrecipitation']['value']
+        wind = forecastdata['properties']['periods'][day]['windSpeed']
+        print(f'Forecast for {weekday}')
+        print(f'    {shortforecast}')
+        print(f'    Temperature: {temp}F degrees')
+        print(f'    Chance of rain is {rainpercent}%')
+        print(f'    Wind speed is {wind} mph')
+        print()
+        day += 2
 
 
 
